@@ -50,6 +50,19 @@ def createRegressor(X,y):
    mae = mean_absolute_error(y_test, y_predicted, multioutput='uniform_average')
    mse = mean_squared_error(y_test, y_predicted, multioutput='uniform_average')
    r2 = r2_score(y_test, y_predicted, multioutput='uniform_average')
+
+   maeRaw = mean_absolute_error(y_test, y_predicted, multioutput='raw_values')
+   mseRaw = mean_squared_error(y_test, y_predicted, multioutput='raw_values')
+   r2Raw = r2_score(y_test, y_predicted, multioutput='raw_values')
+   
+   c1,c2,c3 = y_test.max(axis=0)
+   arrMax = [c1,c2,c3]
+   errRelative = (np.abs( y_test - y_predicted ))/y_test
+   errRelativeMax = (np.abs( y_test - y_predicted ))/arrMax
+
+   meanErrRelative = errRelative.mean(axis=0)
+   meanErrRelativeMax = errRelativeMax.mean(axis=0)
+
     
 
    #return X_train, y_train, X_test, y_test, train_score, test_score_mae, test_score_mse, test_score_r2
@@ -72,6 +85,18 @@ def createRegressor(X,y):
 #mae = 0.061469116916907041
 #mse = 0.0075398897758081817 
 #r2 = 0.99239279756115195
+
+##Exact data
+#drexact, dphirexact, dzexact
+#mae = 0.0083500585421290852
+#mse = 0.00017494805356917882
+#r2 = 0.9857472928478469
+#maeRaw = [ 0.00505656,  0.01056175,  0.00943187]
+#mseRaw = [5.43993814e-05,   2.73900167e-04,   1.96544612e-04]
+#r2Raw =  [ 0.99206791,  0.96970335,  0.99547061]
+#meanErrRelative = [ 0.00698066,  0.03414017,  0.02466064]
+#meanErrRelativeMax = [ 0.00520542,  0.01347498,  0.00943187]
+
 
 def cvRegressor(X,y):
 

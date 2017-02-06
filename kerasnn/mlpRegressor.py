@@ -50,7 +50,7 @@ def MLPRegressor(x, y, nbClasses, batch, nbEpoch):
    mse = mean_squared_error(y_test, y_predicted)
    r2 = r2_score(y_test, y_predicted)
 
-   return model, y_predicted, mae, mse, r2
+   return X_train, X_test, y_train, y_test, model, y_predicted, mae, mse, r2
 
 #model, y_predicted, mae, mse, r2 = MLPRegressor(X, y, 3, 100, 200)
 
@@ -69,6 +69,19 @@ def MLPRegressor(x, y, nbClasses, batch, nbEpoch):
 #mse = 0.0062343208688496994
 #r2 = 0.99367991989563098
 
+
+##Exact
+#drexact, dphirexact, dzexact
+#X_train, X_test, y_train, y_test, model, y_predicted, mae, mse, r2 = MLPRegressor(Xnorm, ynorm, 3, 100, 200)
+#mae=0.01105490264907011
+#mse = 0.00026797110870795934
+#r2 = 0.9864414452505933
+#maeRaw = [ 0.00818956,  0.0079235 ,  0.01705165]
+#mseRaw = [ 0.00014904,  0.00016362,  0.00049125]
+#r2Raw = [ 0.97826779,  0.98190134,  0.98867916]
+#meanErrRelative[ 0.01225635,  0.02299114,  0.03194341]
+#meanErrRelativeMax[ 0.00843065,  0.01010903,  0.01705165]
+
 def cvMLPRegressor(x, y, nbClasses, batch, nbEpoch):
 
    seed = 3
@@ -84,7 +97,7 @@ def cvMLPRegressor(x, y, nbClasses, batch, nbEpoch):
 
    return model, y_predicted, mae, mse, r2
 
-#model, y_predicted, mae, mse, r2 = cvMLPRegressor(x, y, 3, 100, 200)
+#model, y_predicted2, mae_2, mse_2, r2_2 = cvMLPRegressor(x, y, 3, 100, 200)
 
 #raw data without normalization / standardization
 #mae = 2.7303752708257729

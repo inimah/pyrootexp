@@ -53,9 +53,10 @@ def deepAutoencoders(x, y, encodingDim, inputShape):
     inputDat = Input(shape=(inputShape,))
     encoded = Dense(300, activation='relu')(inputDat)
     encoded = Dense(200, activation='relu')(encoded)
-    encoded = Dense(300, activation='relu')(encoded)
-    decoded = Dense(200, activation='relu')(encoded)
-    decoded = Dense(300, activation='relu')(decoded)
+    encoded = Dense(33, activation='relu')(encoded)
+    decoded = Dense(33, activation='relu')(encoded)
+    decoded = Dense(200, activation='relu')(decoded)
+    decoded = Dense(33, activation='relu')(decoded)
     decoded = Dense(inputShape, activation='sigmoid')(decoded)
 
     # maps an input to its reconstruction
@@ -73,7 +74,7 @@ def deepAutoencoders(x, y, encodingDim, inputShape):
 
     autoencoder.compile(optimizer='adam', loss='mse')
 
-    x_train,y_train,x_test,y_test,x,y = splitData(x, y, 0.2)
+    x_train,y_train,x_test,y_test= splitData(x, y, 0.2)
 
     autoencoder.fit(x_train, x_train, nb_epoch=100, batch_size=100, shuffle=True, validation_data=(x_test, x_test))
 
@@ -90,7 +91,7 @@ def deepAutoencoders(x, y, encodingDim, inputShape):
    
     return autoencoder, encoder, decoder, x_train_encoded, x_train_decoded, x_test_encoded, x_test_decoded, x_train_ae, x_test_ae, x_train, y_train, x_test, y_test
     
-#autoencoder, encoder, decoder, x_train_encoded, x_train_decoded, x_test_encoded, x_test_decoded, x_train_ae, x_test_ae, x_train, y_train, x_test, y_test = deepAutoencoders(x, y, 300, 33)
+#autoencoder, encoder, decoder, x_train_encoded, x_train_decoded, x_test_encoded, x_test_decoded, x_train_ae, x_test_ae, x_train, y_train, x_test, y_test = deepAutoencoders(x, y, 33, 33)
 
 #raw data without normalization / standardization
 
